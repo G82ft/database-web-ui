@@ -1,0 +1,45 @@
+.displaySettings>* {
+    display: block;
+    margin: 1em auto;
+}
+.displaySettings label {
+    text-align: center;
+}
+
+
+table {
+    border: 1px solid black;
+}
+table td, table th {
+    padding: 0.25em;
+    border: 1px solid black;
+}
+table th {
+    text-align: left;
+    font-weight: normal;
+}
+table td * {
+    display: block;
+    margin: auto;
+}
+
+.actions {
+    margin-top: 1em;
+    display: block;
+    float: right;
+}
+.actions input {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.actions input[value="Save"] {
+    color: green;
+}
+.actions input[value="Cancel"] {
+    color: red;
+}
+
+#debug {
+    font-family: monospace;
+    font-size: 1.1em;
+}

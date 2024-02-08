@@ -1,0 +1,13 @@
+input {
+    display: block;
+}
+input:invalid {
+    background: red;
+}
+label {
+    display: block;
+}
+form input[type="submit"] {
+    display: block;
+    margin: 1em auto;
+}
