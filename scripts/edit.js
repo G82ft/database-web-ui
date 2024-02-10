@@ -1,20 +1,3 @@
-for (let row of tableData) {
-    for (let [key, value] of Object.entries(row)) {
-        row[key] = parseValue(value, columns[key]);
-    }
-}
-for (let data of Object.values(foreignData)) {
-    for (let row of data) {
-        for (let [key, value] of Object.entries(row)) {
-            let type = columns[key];
-            if (type === undefined) {
-                continue;
-            }
-            row[key] = parseValue(value, columns[key]);
-        }
-    }
-}
-
 let selectedTable = document.getElementById("table");
 let selectForeign = document.getElementById("selectForeign");
 let showForeign = document.getElementById("showForeign");
@@ -32,6 +15,22 @@ let table = document.getElementsByTagName("table")[0];
 let toDelete = [];
 
 function fillTable() {
+    for (let row of tableData) {
+        for (let [key, value] of Object.entries(row)) {
+            row[key] = parseValue(value, columns[key]);
+        }
+    }
+    for (let data of Object.values(foreignData)) {
+        for (let row of data) {
+            for (let [key, value] of Object.entries(row)) {
+                let type = columns[key];
+                if (type === undefined) {
+                    continue;
+                }
+                row[key] = parseValue(value, columns[key]);
+            }
+        }
+    }
     for (let i = 0; i < tableData.length; i++) {
         let row = tableData[i];
         insertRow(columns, constraints, foreignKeys, foreignData, showForeign.checked, selectForeign.checked, row);
