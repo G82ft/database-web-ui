@@ -20,15 +20,11 @@ function fillTable() {
             row[key] = parseValue(value, columns[key]);
         }
     }
-    for (let data of Object.values(foreignData)) {
+    for (let [local, data] of Object.entries(foreignData)) {
         for (let row of data) {
-            for (let [key, value] of Object.entries(row)) {
-                let type = columns[key];
-                if (type === undefined) {
-                    continue;
-                }
-                row[key] = parseValue(value, columns[key]);
-            }
+            let type = columns[local];
+            let foreign = foreignKeys[local]["column"];
+            row[foreign] = parseValue(row[foreign], type);
         }
     }
     for (let i = 0; i < tableData.length; i++) {
