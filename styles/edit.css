@@ -17,6 +17,7 @@ table td, table th {
 table th {
     text-align: left;
     font-weight: normal;
+    cursor: pointer;
 }
 table td * {
     display: block;

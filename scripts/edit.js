@@ -259,3 +259,27 @@ window.onbeforeunload = deleteUnsavedData;
 
 fillTable();
 addEmptyRow();
+
+function getCellValue(tr, index) {
+    return tr.children[index+1].children[0].value;
+}
+
+function comparer(index, asc) {
+    // This is used by the array.sort() function...
+    return function(a, b) {
+        if (a.lastChild.lastChild.type !== "button") return 1;
+        if (b.lastChild.lastChild.type !== "button") return -1;
+
+        return function(v1, v2) {
+            return (v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2))
+                ? v1 - v2
+                : v1.toString().localeCompare(v2);
+        }(getCellValue(asc ? a : b, index), getCellValue(asc ? b : a, index));
+    }
+}
+
+document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
+    Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
+        .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+        .forEach(tr => table.appendChild(tr));
+})));
